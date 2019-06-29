@@ -8,15 +8,17 @@ var wrongLetter = [];
 
 var emptyLetter = [];
 
+
+
 console.log(wordGenerated);
 
-
-var underScores = function() {    
-    for (var i = 0; i < wordGenerated.length; i++) {
-    emptyLetter[i] = "_";
+for (var i = 0; i < wordGenerated.length; i++) {
+        emptyLetter.push("_");      
     }
-    return emptyLetter;
+var underScores = function () {    
+    return emptyLetter.join(' ');
 }
+
 
 
 console.log(underScores());
@@ -24,60 +26,50 @@ console.log(underScores());
 var remainingLetters = wordGenerated.length;
 
 var wordGeneratedElement = document.querySelector("#wordGenerated");
- 
+
+var guessesElement = document.querySelector("#guessesRemain")
+
 wordGeneratedElement.innerHTML = underScores();
 
-var win = 0;
+var win = 1;
 
-var guesses = 8;
+var guesses = 4;
+
+var lettersGuessedElement = document.querySelector("#lettersGuessed");
+
+var winElement = document.querySelector("#win");
+
+function winReset() {
+    wordGeneratedElement.innerHTML = underScores();
+    lettersGuessedElement.innerHTML = "";
+    guessesElement.innerHTML = 4;
+}
 
 document.onkeyup = function (event) {
-// ------------------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------------------
     var userGuess = event.key;
     console.log(userGuess);
-    if (wordGenerated.indexOf(userGuess) > -1) {
+        if (wordGenerated.indexOf(userGuess) > -1) {
         rightLetter.push(userGuess);
-        
-        // emptyLetter[wordGenerated.indexOf(userGuess)] = userGuess;
+        emptyLetter[wordGenerated.indexOf(userGuess)] = userGuess;
+        wordGeneratedElement.innerHTML = underScores(userGuess);
         console.log(rightLetter);
-        
-    } else {
+
+            if (emptyLetter.join('') == wordGenerated) {
+            winElement.innerHTML = win;
+            winReset();
+            }   
+        } else {
         wrongLetter.push(userGuess);
-    }
+        lettersGuessedElement.innerHTML = wrongLetter.join(' ');
+        guesses--;
+        }
+        if (guesses < 1) {
+        alert("Sorry! You lose! Try again!");
+        location.reload();
+    }   
 
-
-
-
-    
-
-
-
-
-    // var wordGeneratedElement = document.querySelector("#wordGenerated");
-
-    // var wordGeneratedElement = Math.floor((Math.random() * wordList.length));
-
-
-
-    // else {
-    //     guesses-1;
-    // }
-
-    // drinkList.forEach(function (element) {
-    //     var listElement = $("<li>");
-    //     listElement.text(element);
-    //     optionsElement.append(listElement);
-    // });
-
-
-
-    var winElement = document.querySelector("#win")
-
-    winElement.innerHTML = win;
-
-    var guessesElement = document.querySelector("#guessesRemain")
-
-    guessesElement.innerHTML = (guesses - userGuess);
+    guessesElement.innerHTML = guesses;
 
 }
 

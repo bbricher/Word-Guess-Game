@@ -1,9 +1,39 @@
 h1 {
     font-size: 70px;
+    margin: 20px 300px 20px 300px;
 }
 h2 {
     font-size: 50px;
+    margin: 20px;
 }
 #wordGenerated {
     font-size: 70px;
+    padding: 20px;
+    align-self: center;
+    margin: 20px 0 10px 550px;
 }
+body {
+    background-color: lightblue;
+
+}
+#title {
+    background-color: black;
+    height: 150px;
+}
+#the-office {
+    color: white;
+    font-size: 60px;
+    margin: 15px 15px 15px 15px;
+    padding: 15px 0 15px 15px;
+}
+#characters {
+    color: red;
+    font-size: 60px;
+    padding: 0 15px 0 0;
+}
+img {
+    height: 100px;
+    width: auto;
+    padding: 15px 5px 0 5px;
+}
+

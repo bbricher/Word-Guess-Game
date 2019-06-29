@@ -1,6 +1,7 @@
-var wordList = ["michael", "jim", "pam", "dwight", "toby", "ryan", "kevin", "andy"]
+var wordList = ["michael", "jim", "pam", "dwight", "toby", "ryan", "kevin", "andy"];
 
 var wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
+
 
 var rightLetter = [];
 
@@ -39,14 +40,22 @@ var lettersGuessedElement = document.querySelector("#lettersGuessed");
 
 var winElement = document.querySelector("#win");
 
-function winReset() {
-    wordGeneratedElement.innerHTML = underScores();
-    lettersGuessedElement.innerHTML = "";
-    guessesElement.innerHTML = 4;
-}
-
+// function newGame() {
+//     lettersGuessedElement.innerHTML = "";
+//     var wordList = ["michael", "jim", "pam", "dwight", "toby", "ryan", "kevin", "andy"];
+//     var wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
+//     for (var i = 0; i < wordGenerated.length; i++) {
+//         emptyLetter.push("_");      
+//     }
+//     var underScores = function () {    
+//         return emptyLetter.join(' ');
+//     }
+//     wordGeneratedElement.innerHTML = underScores();
+//     guessesElement.innerHTML = 4;
+// }
+//  MY ATTEMPT TO RESET THE GAME------------------------------------------------------------------------------------------------------------------
 document.onkeyup = function (event) {
-    // ------------------------------------------------------------------------------------------------------------------
+    
     var userGuess = event.key;
     console.log(userGuess);
         if (wordGenerated.indexOf(userGuess) > -1) {
@@ -57,7 +66,8 @@ document.onkeyup = function (event) {
 
             if (emptyLetter.join('') == wordGenerated) {
             winElement.innerHTML = win;
-            winReset();
+            wordGeneratedElement.innerHTML = "";
+            // newGame();
             }   
         } else {
         wrongLetter.push(userGuess);

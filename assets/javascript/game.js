@@ -78,7 +78,7 @@ document.onkeyup = function (event) {
             resetGame();
             }  
         if (guesses < 1) {
-            alert("Sorry! You lose! Try again!");
+            alert("Sorry! You lose! It was: " + wordGenerated + " Try again!");
             loseElement.innerHTML = lose++;
             resetGame();
         }   

@@ -1,28 +1,12 @@
 var wordList = ["michael", "jim", "pam", "dwight", "toby", "ryan", "kevin", "andy"];
 
-var wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
-
-
 var rightLetter = [];
 
 var wrongLetter = [];
 
 var emptyLetter = [];
 
-
-
-console.log(wordGenerated);
-
-for (var i = 0; i < wordGenerated.length; i++) {
-        emptyLetter.push("_");      
-    }
-var underScores = function () {    
-    return emptyLetter.join(' ');
-}
-
-
-
-console.log(underScores());
+var wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
 
 var remainingLetters = wordGenerated.length;
 
@@ -30,9 +14,9 @@ var wordGeneratedElement = document.querySelector("#wordGenerated");
 
 var guessesElement = document.querySelector("#guessesRemain")
 
-wordGeneratedElement.innerHTML = underScores();
-
 var win = 1;
+
+var lose = 1;
 
 var guesses = 4;
 
@@ -40,47 +24,68 @@ var lettersGuessedElement = document.querySelector("#lettersGuessed");
 
 var winElement = document.querySelector("#win");
 
-// function newGame() {
-//     lettersGuessedElement.innerHTML = "";
-//     var wordList = ["michael", "jim", "pam", "dwight", "toby", "ryan", "kevin", "andy"];
-//     var wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
-//     for (var i = 0; i < wordGenerated.length; i++) {
-//         emptyLetter.push("_");      
-//     }
-//     var underScores = function () {    
-//         return emptyLetter.join(' ');
-//     }
-//     wordGeneratedElement.innerHTML = underScores();
-//     guessesElement.innerHTML = 4;
-// }
+var loseElement = document.querySelector("#lose");
+
+var underScores = function () {    
+    return emptyLetter.join(' ');
+}
+
+function startGame() {
+    wordGenerated = wordList[Math.floor(Math.random() * wordList.length)];
+        for (var i = 0; i < wordGenerated.length; i++) {
+            console.log(wordGenerated.length)
+            emptyLetter.push("_");      
+        }
+    console.log(wordGenerated);
+    wordGeneratedElement.innerHTML = underScores();
+    console.log(underScores());
+}
+
+
+
+
+startGame();
+
+
+
+function resetGame() {
+    rightLetter = [];
+    wrongLetter = [];
+    emptyLetter = [];
+    lettersGuessedElement.innerHTML = "";
+    wordGeneratedElement.innerHTML = "";
+    guesses = 4;
+    startGame();
+}
 //  MY ATTEMPT TO RESET THE GAME------------------------------------------------------------------------------------------------------------------
 document.onkeyup = function (event) {
     
     var userGuess = event.key;
     console.log(userGuess);
         if (wordGenerated.indexOf(userGuess) > -1) {
-        rightLetter.push(userGuess);
-        emptyLetter[wordGenerated.indexOf(userGuess)] = userGuess;
-        wordGeneratedElement.innerHTML = underScores(userGuess);
-        console.log(rightLetter);
-
-            if (emptyLetter.join('') == wordGenerated) {
-            winElement.innerHTML = win;
-            wordGeneratedElement.innerHTML = "";
-            // newGame();
-            }   
+            rightLetter.push(userGuess);
+            emptyLetter[wordGenerated.indexOf(userGuess)] = userGuess;
+            wordGeneratedElement.innerHTML = underScores(userGuess);
+            console.log(rightLetter); 
         } else {
-        wrongLetter.push(userGuess);
-        lettersGuessedElement.innerHTML = wrongLetter.join(' ');
-        guesses--;
+            wrongLetter.push(userGuess);
+            lettersGuessedElement.innerHTML = wrongLetter.join(' ');
+            guesses--;
         }
+        if (emptyLetter.join('') === wordGenerated) {
+            alert("Correct! It was: " + wordGenerated)
+            winElement.innerHTML = win++;
+            resetGame();
+            }  
         if (guesses < 1) {
-        alert("Sorry! You lose! Try again!");
-        location.reload();
-    }   
+            alert("Sorry! You lose! Try again!");
+            loseElement.innerHTML = lose++;
+            resetGame();
+        }   
 
     guessesElement.innerHTML = guesses;
 
 }
+
 
 

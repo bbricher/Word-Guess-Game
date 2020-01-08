@@ -1,16 +1,28 @@
 h1 {
     font-size: 70px;
-    margin: 20px 300px 20px 300px;
+    text-align: center;
+    /* margin: 20px 300px 20px 300px; */
 }
 h2 {
     font-size: 50px;
     margin: 20px;
 }
+
+#center {
+    text-align: center;
+}
+#score {
+    padding: 20px 300px;
+}
+#main {
+    width: 1500px;
+    justify-content: center;
+}
 #wordGenerated {
     font-size: 70px;
     padding: 20px;
     align-self: center;
-    margin: 20px 0 10px 550px;
+    text-align: center;
 }
 body {
     background-color: lightblue;
